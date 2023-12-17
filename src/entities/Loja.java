@@ -32,16 +32,25 @@ public class Loja {
 
         this.estoqueDaLoja++;
 
-        /*Varra o array para adicionar ao estoque do mangá
-        * caso a inserção do usuário corresponada ha um que já existe*/
     }
 
     public Manga pesquisarManga(Integer id){
-        return mangas.get(id);
+        for(Manga aux: mangas){
+            if(aux.getId()==id){
+                return aux;
+            }
+        }
+        return null;
     }
 
     public void removerMangaId(Integer id){
-        mangas.remove(id);
+        for(Manga aux: mangas){
+            if(aux.getId()==id){
+                int num =1;
+                aux.setEstoque(aux.getEstoque()-1);
+                this.estoqueDaLoja--;
+            }
+        }
     }
 
     @Override
