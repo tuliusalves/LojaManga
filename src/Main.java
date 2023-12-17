@@ -1,3 +1,4 @@
+import Controller.LojaController;
 import entities.Loja;
 import entities.Manga;
 
@@ -6,6 +7,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Loja loja = new Loja();
+        LojaController lojaController = new LojaController();
 
         loja.adicionarManga("Naruto", 1, 10.20);
         loja.adicionarManga("Naruto", 1, 10.20);
@@ -19,11 +21,10 @@ public class Main {
         loja.removerMangaId(1);
 
         System.out.println(loja.toString());*/
+        lojaController.setLoja(loja);
 
-        loja.adicionarManga("Naruto", 1, 10.20);
-        loja.atualizarManga("Gintama",2,10.25);
-        loja.atualizarEstoqueManga(1,1);
-        System.out.println(loja.toString());
-
+        lojaController.exibirMenu();
+        lojaController.escolhaOpcao(6);
+        lojaController.escolhaOpcao(1);
     }
 }
