@@ -53,6 +53,29 @@ public class Loja {
         }
     }
 
+    public void atualizarManga(String nome, Integer id, double preco){
+        Manga auxManga = new Manga(nome,id,preco);
+        for(Manga aux: mangas){
+            if(aux.getId()==auxManga.getId()){
+                aux.setNome(auxManga.getNome());
+                aux.setPreco(auxManga.getPreco());
+                System.out.println("O mangá de id:"+aux.getId()+" foi atualizado!");
+                break;
+            }
+        }
+    }
+    public void atualizarEstoqueManga(Integer id, int estoque){
+        for(Manga aux: mangas){
+            int diferencaEstoque=0;
+                diferencaEstoque = estoque - aux.getEstoque() ;
+            if(aux.getId()==id){
+                aux.setEstoque(estoque);
+                this.estoqueDaLoja +=diferencaEstoque;
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "Loja{" +
