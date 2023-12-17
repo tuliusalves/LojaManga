@@ -34,13 +34,17 @@ public class Loja {
 
     }
 
-    public Manga pesquisarManga(Integer id){
+    public void pesquisarMangaID(Integer id){
         for(Manga aux: mangas){
             if(aux.getId()==id){
-                return aux;
+                System.out.println(aux.toString());
+            }else{
+                System.out.println("Nenhum mangá com esse Id foi encontrado no estoque.");
             }
         }
-        return null;
+    }
+    public void exibirEstoque(){
+        System.out.println(toString());
     }
 
     public void removerMangaId(Integer id){
@@ -61,6 +65,8 @@ public class Loja {
                 aux.setPreco(auxManga.getPreco());
                 System.out.println("O mangá de id:"+aux.getId()+" foi atualizado!");
                 break;
+            }else{
+                System.out.println("O ID não coincide com os IDs dos mangás no estoque.");
             }
         }
     }
