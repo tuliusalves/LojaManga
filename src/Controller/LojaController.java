@@ -26,6 +26,7 @@ public class LojaController {
         System.out.println("6-(Atualizar o estoque do mangá)");
         System.out.println("7-(Encerrar o programa)");
         System.out.println();
+        System.out.println("Escolha uma opção");
     }
 
     public void escolhaOpcao(int escolha){
@@ -40,13 +41,17 @@ public class LojaController {
                         String resposta="";
                         do{
                             System.out.println("Digite o ID do mangá que deseja pesquisar");
-                            id=scanner.nextInt();
-                            scanner.nextLine();
-                            loja.pesquisarMangaID(id);
+                            if(scanner.hasNextInt()){
+                                id=scanner.nextInt();
+                                loja.pesquisarMangaID(id);
+                                scanner.nextLine();
+                            }else{
+                                scanner.nextLine();
+                            }
                             System.out.println("Deseja realizar outra pesquisa?");
                             resposta = scanner.nextLine();
                         }while(!resposta.equalsIgnoreCase("não"));
-                        scanner.close();
+                        scanner.nextLine();
                     }catch (InputMismatchException e){
                         System.out.println("Entrada inválida, por favor digite apenas números");
                     }
@@ -70,8 +75,8 @@ public class LojaController {
                         loja.exibirEstoque();
                         System.out.println("Digite o id do mangá que deseja remover");
                         id= scanner.nextInt();
-                        scanner.close();
                         loja.removerMangaId(id);
+                        scanner.nextLine();
                     }catch (InputMismatchException e){
                         System.out.println("Entrada inválida, por favor digite apenas números");
                     }
@@ -97,14 +102,15 @@ public class LojaController {
                         scanner.nextLine();
                         System.out.println("Digite um número de estoque que o mangá terá agora");
                         int estoque = scanner.nextInt();
-                        scanner.close();
+                        scanner.nextLine();
                         loja.atualizarEstoqueManga(id,estoque);
                     }catch (InputMismatchException e){
                         System.out.println("Entrada inválida, por favor digite apenas números.");
                     }
                     break;
                 default:
-                    System.out.println("Entrada inválida, por favor digite uma das opções");
+                    System.out.println("Programa encerrado, volte sempre que puder.");
+                    scanner.close();
             }
         }catch (InputMismatchException e){
             System.out.println("Você digitou uma entrada incompatível, por favor insira somente números");
