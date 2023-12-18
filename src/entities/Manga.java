@@ -15,7 +15,7 @@ public class Manga extends Produto{
     @Override
     public String toString() {
 
-        return "nome: "+ getNome() +" Id:"+getId()+" Preço R$:"+getPreco()+ " estoque: "+getEstoque()+"\n";
+        return "[nome: "+ getNome() +" Id:"+getId()+" Preço R$:"+getPreco()+ " estoque: "+getEstoque()+"]\n";
 
     }
 

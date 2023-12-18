@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Loja {
     private int estoqueDaLoja;
@@ -29,7 +30,7 @@ public class Loja {
         } else{
             mangas.add(auxManga);
         }
-
+        System.out.println("O mangá ( ID:"+id+" nome:"+nome+ " R$"+preco+ " ) foi adicionado!");
         this.estoqueDaLoja++;
 
     }
@@ -38,7 +39,7 @@ public class Loja {
         for(Manga aux: mangas){
             if(aux.getId()==id){
                 System.out.println(aux.toString());
-            }else{
+            }else if( aux.getId()!=id ){
                 System.out.println("Nenhum mangá com esse Id foi encontrado no estoque.");
             }
         }
@@ -48,45 +49,61 @@ public class Loja {
     }
 
     public void removerMangaId(Integer id){
-        for(Manga aux: mangas){
-            if(aux.getId()==id){
-                int num =1;
-                aux.setEstoque(aux.getEstoque()-1);
-                this.estoqueDaLoja--;
+        try {
+            for (Manga aux : mangas) {
+                if (aux.getId() == id) {
+                    int num = 1;
+                    aux.setEstoque(aux.getEstoque() - 1);
+                    this.estoqueDaLoja--;
+                    System.out.println("Mangá de ID:"+id+" foi removido com sucesso!");
+                    break;
+                }
             }
+        }catch (NoSuchElementException e){
+            System.out.println("Id não encontrado");
         }
     }
 
     public void atualizarManga(String nome, Integer id, double preco){
         Manga auxManga = new Manga(nome,id,preco);
+        boolean mangaAchado=true;
         for(Manga aux: mangas){
             if(aux.getId()==auxManga.getId()){
                 aux.setNome(auxManga.getNome());
                 aux.setPreco(auxManga.getPreco());
                 System.out.println("O mangá de id:"+aux.getId()+" foi atualizado!");
-                break;
+                mangaAchado=true;
             }else{
-                System.out.println("O ID não coincide com os IDs dos mangás no estoque.");
+                mangaAchado=false;
             }
+        }
+        if(!mangaAchado==true){
+            System.out.println("O ID não coincide com os IDs dos mangás no estoque.");
         }
     }
     public void atualizarEstoqueManga(Integer id, int estoque){
         for(Manga aux: mangas){
-            int diferencaEstoque=0;
-                diferencaEstoque = estoque - aux.getEstoque() ;
+            int diferencaEstoque = estoque - aux.getEstoque() ;
+            boolean mangaAchado= true;
             if(aux.getId()==id){
                 aux.setEstoque(estoque);
                 this.estoqueDaLoja +=diferencaEstoque;
+                mangaAchado=true;
+                System.out.println("O mangá de ID:"+id+"Foi atualizado");
                 break;
+            }else{
+                mangaAchado=false;
+            }
+            if(!mangaAchado==true){
+                System.out.println("O ID não coincide com os IDs dos mangás no estoque.");
             }
         }
     }
 
     @Override
     public String toString() {
-        return "Loja{" +
-                "estoque=" + estoqueDaLoja +
-                ", mangas=" + mangas +
+        return " [estoque da loja=" + estoqueDaLoja +
+                "] {\n mangas=" + mangas +
                 '}';
     }
 }
