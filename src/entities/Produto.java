@@ -4,16 +4,16 @@ import java.util.Objects;
 
 public abstract class Produto {
     private String nome;
-    private Integer id;
+    private int id;
     private double preco;
     private int estoque;
 
 
     public Produto(){}
 
-    public Produto(String nome, Integer id, double preco) {
+    public Produto(String nome, double preco) {
         this.nome = nome;
-        this.id = id;
+        this.id = Loja.gerarIdAutomatico();
         this.preco = preco;
 
     }
@@ -26,11 +26,11 @@ public abstract class Produto {
         this.nome = nome;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -5,11 +5,10 @@ public class Manga extends Produto{
     public Manga() {
         super();
     }
-    public Manga(String nome, Integer id, double preco){
+    public Manga(String nome, double preco){
         this.setNome(nome);
-        this.setId(id);
         this.setPreco(preco);
-        this.setEstoque(+1);
+        this.setEstoque(1);
     }
 
     @Override
