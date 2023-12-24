@@ -30,31 +30,24 @@ public class Main {
         do {
             try {
                 lojaController.exibirMenu();
-                if(scan.hasNextInt()){
+
                     opcao =scan.nextInt();
                     scan.nextLine();
                     lojaController.escolhaOpcao(opcao);
+                    /*
                     System.out.println("Deseja continuar a operação?");
                     resposta= scan.nextLine();
-                    if (!resposta.equalsIgnoreCase("sim")){
+                    scan.nextLine();*/
+                    /*if (!resposta.equalsIgnoreCase("sim")){
                         opcao=8;
-                    }
-                }else{
-                    System.out.println();
-                    scan.nextLine();
-                }
+                    }*/
+
             }catch (InputMismatchException e){
                 System.out.println("Entrada inválida. Por favor insira uma opção");
                 scan.nextLine();
             }
-           /* try {
-                System.out.println("Deseja contiuar a operação?");
-                resposta=scan.nextLine();
-            }catch (Exception e){
-                System.out.println("erro");
-            }*/
 
-        }while (opcao<7);
+        }while (opcao!=7);
 
         scan.close();
     }

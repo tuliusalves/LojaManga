@@ -5,8 +5,10 @@ import java.util.NoSuchElementException;
 
 public class Loja {
     private int estoqueDaLoja;
-
-    public Loja(){}
+    static int proximoId=0;
+    public Loja(){
+        proximoId =1;
+    }
 
     public int getEstoque() {
         return estoqueDaLoja;
@@ -16,21 +18,31 @@ public class Loja {
         this.estoqueDaLoja = estoque;
     }
 
-    ArrayList<Manga> mangas = new ArrayList<Manga>();
+    static ArrayList<Manga> mangas = new ArrayList<Manga>();
 
 
-    public void adicionarManga(String nome, Integer id, double preco){
-        Manga auxManga = new Manga(nome, id, preco);
+    public static int gerarIdAutomatico(){
+        for(Manga aux: mangas){
+            if(aux.getId()==proximoId){
+                proximoId++;
+                return gerarIdAutomatico();
+            }
+        }
+        return proximoId;
+    }
+    public void adicionarManga(String nome,  double preco){
+
+        Manga auxManga = new Manga(nome, preco);
         /*Se os parâmetros forem iguais, apenas "estoque" será
         * Acrescentado*/
-        boolean confirmarManga= false;
-        if(mangas.contains(auxManga)){
-            Manga mangaExistente = mangas.get(mangas.indexOf(auxManga));
-            mangaExistente.setEstoque(mangaExistente.getEstoque() + auxManga.getEstoque());
-        } else{
-            mangas.add(auxManga);
-        }
-        System.out.println("O mangá ( ID:"+id+" nome:"+nome+ " R$"+preco+ " ) foi adicionado!");
+            auxManga.setId(gerarIdAutomatico());
+            if(proximoId == auxManga.getId()){
+                Manga mangaExistente = auxManga;
+                mangaExistente.setEstoque(mangaExistente.getEstoque() + auxManga.getEstoque()-1);
+                mangas.add(mangaExistente);
+            }
+
+        System.out.println("O mangá ( ID:"+ auxManga.getId()+" nome:"+nome+ " R$"+preco+ " ) foi adicionado!");
         this.estoqueDaLoja++;
 
     }
@@ -64,8 +76,8 @@ public class Loja {
         }
     }
 
-    public void atualizarManga(String nome, Integer id, double preco){
-        Manga auxManga = new Manga(nome,id,preco);
+    public void atualizarManga(String nome, double preco){
+        Manga auxManga = new Manga(nome,preco);
         boolean mangaAchado=true;
         for(Manga aux: mangas){
             if(aux.getId()==auxManga.getId()){
@@ -77,7 +89,7 @@ public class Loja {
                 mangaAchado=false;
             }
         }
-        if(!mangaAchado==true){
+        if(!mangaAchado){
             System.out.println("O ID não coincide com os IDs dos mangás no estoque.");
         }
     }

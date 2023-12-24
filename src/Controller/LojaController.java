@@ -60,11 +60,10 @@ public class LojaController {
                     try{
                         System.out.println("Digite o nome do mangá");
                         String nome = scanner.nextLine();
-                        System.out.println("Digite o Id do mangá");
-                        id = scanner.nextInt();
+
                         System.out.println("Digite o preço do mangá");
                         double preco = scanner.nextDouble();
-                        loja.adicionarManga(nome,id,preco);
+                        loja.adicionarManga(nome,preco);
                         scanner.nextLine();
                     }catch (InputMismatchException e){
                         System.out.println("Entrada inválida por favor digite apenas números");
@@ -90,7 +89,7 @@ public class LojaController {
                         String nome = scanner.nextLine();
                         System.out.println("Digite um preço para o mangá");
                         double preco = scanner.nextDouble();
-                        loja.atualizarManga(nome,id,preco);
+                        loja.atualizarManga(nome,preco);
                     }catch (InputMismatchException e){
                         System.out.println("Entrada inválida, por favor digite apenas números.");
                     }
@@ -108,9 +107,11 @@ public class LojaController {
                         System.out.println("Entrada inválida, por favor digite apenas números.");
                     }
                     break;
+                case 7:
+                    System.out.println("Programa encerrado");
+                    break;
                 default:
-                    System.out.println("Programa encerrado, volte sempre que puder.");
-                    scanner.close();
+                    System.out.println("Opção inválida");
             }
         }catch (InputMismatchException e){
             System.out.println("Você digitou uma entrada incompatível, por favor insira somente números");
