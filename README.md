@@ -13,7 +13,7 @@ A Classe _Produto_ é a superClasse da classe _Manga_<br>
 ![Produto](https://github.com/tuliusalves/LojaManga/blob/main/images/Produto.JPG)
 ![Produto](https://github.com/tuliusalves/LojaManga/blob/main/images/Produto-1.JPG) <br>
 
-### __Classe Manga__<br>
+### __Manga__<br>
 ![Manga](https://github.com/tuliusalves/LojaManga/blob/main/images/Manga.PNG)<br>
 
 ### __Loja__<br>
