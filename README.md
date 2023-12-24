@@ -6,4 +6,4 @@ Nesta aplicação teremos as seguintes classes:<br>
 - __Loja__
 - __LojaController__
 
-![imagem](images\Loja.png)
+
